@@ -2,13 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Persona } from '../model/persona';
 import { Observable } from 'rxjs';
+import { getConexionBackend } from '../utils/constants';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PersonaService {
-  readonly BASE_URL = 'http://localhost:8080/api/v1/persona';
-  constructor(private http: HttpClient) {}
+  BASE_URL: string;
+  constructor(private http: HttpClient) {
+    this.BASE_URL = getConexionBackend();
+    this.BASE_URL = `${this.BASE_URL}/persona`;
+    console.log(this.BASE_URL);
+  }
 
   getPersona(): Observable<Persona[]> {
     return this.http.get<Persona[]>(`${this.BASE_URL}/listar`);

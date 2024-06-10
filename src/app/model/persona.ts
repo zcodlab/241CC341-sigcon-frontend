@@ -1,3 +1,5 @@
+import { TipoDocumento } from './tipo-documento';
+
 export interface Persona {
   id_persona: number;
   apellido_paterno: string;
@@ -8,4 +10,5 @@ export interface Persona {
   ndocumento: string;
   direccion: string;
   idubigeo: string;
+  tipo_documento: TipoDocumento;
 }
